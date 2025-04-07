@@ -50,8 +50,12 @@ def delete(id):
 @app.route("/update/<int:id>", methods=['GET', 'POST'])
 def update(id):
     if request.method == 'POST':
-        user = User(title=request.form['title'], des=request.form['des'])
-        db.session.add(user)      # Add the object to the session
+        title = request.form['title']
+        des = request.form['des']
+        users = User.query.filter_by(id=id).first()
+        users.title = title
+        users.des = des
+        db.session.add(users)      # Add the object to the session
         db.session.commit()       # Commit the session to the DB
         return redirect('/')
 
