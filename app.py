@@ -55,7 +55,7 @@ def update(id):
         users = User.query.filter_by(id=id).first()
         users.title = title
         users.des = des
-        db.session.add(users)      # Add the object to the session
+        db.session.add(users)      
         db.session.commit()       # Commit the session to the DB
         return redirect('/')
 
